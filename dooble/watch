@@ -1,0 +1,16 @@
+#!/bin/sh
+
+wget http://dooble.sourceforge.net/ >/dev/null 2>/dev/null
+if [ $? = 0 ]; then
+	grep Release < index.html | md5sum > new-sum
+	if [ "$(cat sum)" = "$(cat new-sum)" ]; then
+		rm new-sum
+	else
+		mv new-sum sum
+		echo 'dooble'
+	fi
+	rm index.html
+else
+	echo 'dooble (unfetchable)'
+fi
+
