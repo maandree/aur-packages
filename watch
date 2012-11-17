@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+packages="pony"
+
+cd ${BASH_SOURCE%/*}
+for package in $packages; do
+    cd $package
+    ./watch
+    cd ..
+done
+
