@@ -3,6 +3,7 @@
 wget http://dooble.sourceforge.net/ >/dev/null 2>/dev/null
 if [ $? = 0 ]; then
 	grep Release < index.html | md5sum > new-sum
+	touch sum
 	if [ "$(cat sum)" = "$(cat new-sum)" ]; then
 		rm new-sum
 	else
