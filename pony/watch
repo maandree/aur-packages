@@ -1,0 +1,16 @@
+#!/bin/sh
+
+wget http://hackage.haskell.org/package/pony >/dev/null 2>/dev/null
+if [ $? = 0 ]; then
+	md5sum < pony > new-sum
+	if [ "$(cat sum)" = "$(cat new-sum)" ]; then
+		rm new-sum
+	else
+		mv new-sum sum
+		echo 'pony'
+	fi
+	rm pony
+else
+	echo 'pony (unfetchable)'
+fi
+
