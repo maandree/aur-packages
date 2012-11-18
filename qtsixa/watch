@@ -2,7 +2,7 @@
 
 wget http://sourceforge.net/projects/qtsixa/files/ >/dev/null 2>/dev/null
 if [ $? = 0 ]; then
-	grep QtSixA < index.html | md5sum > new-sum
+	grep 'title="QtSixA' < index.html | md5sum > new-sum
 	touch sum
 	if [ "$(cat sum)" = "$(cat new-sum)" ]; then
 		rm new-sum
