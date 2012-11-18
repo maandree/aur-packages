@@ -1,0 +1,24 @@
+#!/bin/sh
+
+wget 'https://projects.archlinux.org/svntogit/packages.git/plain/trunk/PKGBUILD?h=packages/emacs' >/dev/null 2>/dev/null
+wget 'https://projects.archlinux.org/svntogit/packages.git/plain/trunk/emacs.install?h=packages/emacs' >/dev/null 2>/dev/null
+
+touch {PKGBUILD,emacs.install}.upstream.new
+mv PKGBUILD.upstream.{new,old}
+mv emacs.install.upstream.{new,old}
+mv 'PKGBUILD?h=packages%2Femacs' PKGBUILD.upstream.new
+mv 'emacs.install?h=packages%2Femacs' emacs.install.upstream.new
+
+if [ $? = 0 ]; then
+	grep ^pkg < PKGBUILD.upstream.new | md5sum > new-sum
+	touch sum
+	if [ "$(cat sum)" = "$(cat new-sum)" ]; then
+		rm new-sum
+	else
+		mv new-sum sum
+		echo 'emacs-gtk2'
+	fi
+else
+	echo 'emacs-gtk2 (unfetchable)'
+fi
+
