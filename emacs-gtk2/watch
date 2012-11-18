@@ -3,9 +3,6 @@
 wget 'https://projects.archlinux.org/svntogit/packages.git/plain/trunk/PKGBUILD?h=packages/emacs' >/dev/null 2>/dev/null
 wget 'https://projects.archlinux.org/svntogit/packages.git/plain/trunk/emacs.install?h=packages/emacs' >/dev/null 2>/dev/null
 
-touch {PKGBUILD,emacs.install}.upstream.new
-mv PKGBUILD.upstream.{new,old}
-mv emacs.install.upstream.{new,old}
 mv 'PKGBUILD?h=packages%2Femacs' PKGBUILD.upstream.new
 mv 'emacs.install?h=packages%2Femacs' emacs.install.upstream.new
 
@@ -16,6 +13,10 @@ if [ $? = 0 ]; then
 		rm new-sum
 	else
 		mv new-sum sum
+		diff PKGBUILD.upstream.{old,new} > PKGBUILD.upstream.diff
+		diff emacs.install.upstream.{old,new} > emacs.install.upstream.diff
+		mv PKGBUILD.upstream.{new,old}
+		mv emacs.install.upstream.{new,old}
 		echo 'emacs-gtk2'
 	fi
 else
