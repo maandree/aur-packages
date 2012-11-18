@@ -1,0 +1,17 @@
+#!/bin/sh
+
+wget http://pypi.python.org/packages/source/n/numpydoc/ >/dev/null 2>/dev/null
+if [ $? = 0 ]; then
+	grep numpydoc- < index.html | md5sum > new-sum
+	touch sum
+	if [ "$(cat sum)" = "$(cat new-sum)" ]; then
+		rm new-sum
+	else
+		mv new-sum sum
+		echo 'python2-numpydoc'
+	fi
+	rm index.html
+else
+	echo 'python2-numpydoc (unfetchable)'
+fi
+
