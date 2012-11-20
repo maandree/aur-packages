@@ -1,5 +1,6 @@
 #!/bin/sh
 
+[ -f 'index.html' ] &&  rm 'index.html'
 wget http://sourceforge.net/projects/qtsixa/files/ >/dev/null 2>/dev/null
 if [ $? = 0 ]; then
 	[ -f unfetchable ] && rm unfetchable

@@ -1,5 +1,6 @@
 #!/bin/sh
 
+[ -f 'plugins.php?branch=EXT' ] &&  rm 'plugins.php?branch=EXT'
 wget 'http://www.claws-mail.org/plugins.php?branch=EXT' >/dev/null 2>/dev/null
 if [ $? = 0 ]; then
 	[ -f unfetchable ] && rm unfetchable

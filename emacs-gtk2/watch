@@ -1,5 +1,8 @@
 #!/bin/sh
 
+[ -f 'PKGBUILD?h=packages%2Femacs' ] &&  rm 'PKGBUILD?h=packages%2Femacs'
+[ -f 'emacs.install?h=packages%2Femacs' ] &&  rm 'emacs.install?h=packages%2Femacs'
+
 wget 'https://projects.archlinux.org/svntogit/packages.git/plain/trunk/PKGBUILD?h=packages/emacs' >/dev/null 2>/dev/null
 wget 'https://projects.archlinux.org/svntogit/packages.git/plain/trunk/emacs.install?h=packages/emacs' >/dev/null 2>/dev/null
 

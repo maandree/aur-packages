@@ -1,5 +1,6 @@
 #!/bin/sh
 
+[ -f 'pony' ] &&  rm 'pony'
 wget http://hackage.haskell.org/package/pony >/dev/null 2>/dev/null
 if [ $? = 0 ]; then
 	[ -f unfetchable ] && rm unfetchable

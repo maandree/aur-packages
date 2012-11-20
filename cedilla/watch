@@ -1,5 +1,6 @@
 #!/bin/sh
 
+[ -f 'NEWS.text' ] &&  rm 'NEWS.text'
 wget 'http://www.pps.univ-paris-diderot.fr/~jch/software/cedilla/NEWS.text' >/dev/null 2>/dev/null
 if [ $? = 0 ]; then
 	[ -f unfetchable ] && rm unfetchable

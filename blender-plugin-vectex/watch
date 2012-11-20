@@ -1,5 +1,6 @@
 #!/bin/sh
 
+[ -f 'index.html' ] &&  rm 'index.html'
 wget http://code.google.com/p/vectex/ >/dev/null 2>/dev/null
 if [ $? = 0 ]; then
 	[ -f unfetchable ] && rm unfetchable

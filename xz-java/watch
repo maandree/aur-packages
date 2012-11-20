@@ -1,5 +1,6 @@
 #!/bin/sh
 
+[ -f 'index.html?p=xz-java.git;a=blob_plain;f=NEWS;hb=HEAD' ] &&  rm 'index.html?p=xz-java.git;a=blob_plain;f=NEWS;hb=HEAD'
 wget 'http://git.tukaani.org/?p=xz-java.git;a=blob_plain;f=NEWS;hb=HEAD' >/dev/null 2>/dev/null
 if [ $? = 0 ]; then
 	[ -f unfetchable ] && rm unfetchable
