@@ -2,6 +2,7 @@
 
 wget 'http://www.pps.univ-paris-diderot.fr/~jch/software/cedilla/NEWS.text' >/dev/null 2>/dev/null
 if [ $? = 0 ]; then
+	[ -f unfetchable ] && rm unfetchable
 	md5sum < NEWS.text > new-sum
 	touch sum
 	if [ "$(cat sum)" = "$(cat new-sum)" ]; then
@@ -11,7 +12,8 @@ if [ $? = 0 ]; then
 		echo 'cedilla'
 	fi
 	rm NEWS.text
-else
+elif [ ! -f unfetchable ]
+	touch unfetchable
 	echo 'cedilla (unfetchable)'
 fi
 

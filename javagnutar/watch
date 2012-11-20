@@ -2,6 +2,7 @@
 
 wget http://code.google.com/p/javagnutar/ >/dev/null 2>/dev/null
 if [ $? = 0 ]; then
+	[ -f unfetchable ] && rm unfetchable
 	grep \\.zip < index.html | md5sum > new-sum
 	touch sum
 	if [ "$(cat sum)" = "$(cat new-sum)" ]; then
@@ -11,7 +12,8 @@ if [ $? = 0 ]; then
 		echo 'javagnutar'
 	fi
 	rm index.html
-else
+elif [ ! -f unfetchable ]
+	touch unfetchable
 	echo 'javagnutar (unfetchable)'
 fi
 

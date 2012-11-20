@@ -2,6 +2,7 @@
 
 wget 'http://git.tukaani.org/?p=xz-java.git;a=blob_plain;f=NEWS;hb=HEAD' >/dev/null 2>/dev/null
 if [ $? = 0 ]; then
+	[ -f unfetchable ] && rm unfetchable
 	md5sum < 'index.html?p=xz-java.git;a=blob_plain;f=NEWS;hb=HEAD' > new-sum
 	touch sum
 	if [ "$(cat sum)" = "$(cat new-sum)" ]; then
@@ -11,7 +12,8 @@ if [ $? = 0 ]; then
 		echo 'xz-java'
 	fi
 	rm 'index.html?p=xz-java.git;a=blob_plain;f=NEWS;hb=HEAD'
-else
+elif [ ! -f unfetchable ]
+	touch unfetchable
 	echo 'xz-java (unfetchable)'
 fi
 

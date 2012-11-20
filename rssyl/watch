@@ -2,6 +2,7 @@
 
 wget 'http://www.claws-mail.org/plugins.php?branch=EXT' >/dev/null 2>/dev/null
 if [ $? = 0 ]; then
+	[ -f unfetchable ] && rm unfetchable
         head --lines=$(( $(grep -n RSSyl < 'plugins.php?branch=EXT' | cut -f 1 -d \:) + 30 )) < 'plugins.php?branch=EXT' | tail --lines=30 | grep nowrap | md5sum > new-sum
 	touch sum
 	if [ "$(cat sum)" = "$(cat new-sum)" ]; then
@@ -11,7 +12,8 @@ if [ $? = 0 ]; then
 		echo 'rssyl'
 	fi
 	rm 'plugins.php?branch=EXT'
-else
+elif [ ! -f unfetchable ]
+	touch unfetchable
 	echo 'rssyl (unfetchable)'
 fi
 
