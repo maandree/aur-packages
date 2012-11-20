@@ -13,7 +13,7 @@ if [ $? = 0 ]; then
 		echo 'python2-numpydoc'
 	fi
 	rm index.html
-elif [ ! -f unfetchable ]
+elif [ ! -f unfetchable ]; then
 	touch unfetchable
 	echo 'python2-numpydoc (unfetchable)'
 fi

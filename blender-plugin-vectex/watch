@@ -13,7 +13,7 @@ if [ $? = 0 ]; then
 		echo 'blender-plugin-vectex'
 	fi
 	rm index.html
-elif [ ! -f unfetchable ]
+elif [ ! -f unfetchable ]; then
 	touch unfetchable
 	echo 'blender-plugin-vectex (unfetchable)'
 fi

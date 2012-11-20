@@ -23,7 +23,7 @@ if [ $? = 0 ]; then
 		mv emacs.install.upstream.{new,old}
 		echo 'emacs-gtk2'
 	fi
-elif [ ! -f unfetchable ]
+elif [ ! -f unfetchable ]; then
 	touch unfetchable
 	echo 'emacs-gtk2 (unfetchable)'
 fi

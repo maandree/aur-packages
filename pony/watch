@@ -13,7 +13,7 @@ if [ $? = 0 ]; then
 		echo 'pony'
 	fi
 	rm pony
-elif [ ! -f unfetchable ]
+elif [ ! -f unfetchable ]; then
 	touch unfetchable
 	echo 'pony (unfetchable)'
 fi

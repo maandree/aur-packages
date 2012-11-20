@@ -13,7 +13,7 @@ if [ $? = 0 ]; then
 		echo 'cedilla'
 	fi
 	rm NEWS.text
-elif [ ! -f unfetchable ]
+elif [ ! -f unfetchable ]; then
 	touch unfetchable
 	echo 'cedilla (unfetchable)'
 fi

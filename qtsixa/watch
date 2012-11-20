@@ -13,7 +13,7 @@ if [ $? = 0 ]; then
 		echo 'qtsixa'
 	fi
 	rm index.html
-elif [ ! -f unfetchable ]
+elif [ ! -f unfetchable ]; then
 	touch unfetchable
 	echo 'qtsixa (unfetchable)'
 fi

@@ -13,7 +13,7 @@ if [ $? = 0 ]; then
 		echo 'xz-java'
 	fi
 	rm 'index.html?p=xz-java.git;a=blob_plain;f=NEWS;hb=HEAD'
-elif [ ! -f unfetchable ]
+elif [ ! -f unfetchable ]; then
 	touch unfetchable
 	echo 'xz-java (unfetchable)'
 fi

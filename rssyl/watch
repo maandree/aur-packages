@@ -13,7 +13,7 @@ if [ $? = 0 ]; then
 		echo 'rssyl'
 	fi
 	rm 'plugins.php?branch=EXT'
-elif [ ! -f unfetchable ]
+elif [ ! -f unfetchable ]; then
 	touch unfetchable
 	echo 'rssyl (unfetchable)'
 fi
