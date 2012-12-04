@@ -1,0 +1,20 @@
+#!/bin/sh
+
+[ -f 'index.html' ] &&  rm 'index.html'
+wget https://bitbucket.org/rivanvx/beamer/overview >/dev/null 2>/dev/null
+if [ $? = 0 ]; then
+	[ -f unfetchable ] && rm unfetchable
+	grep '</span> Tags' < overview | md5sum > new-sum
+	touch sum
+	if [ "$(cat sum)" = "$(cat new-sum)" ]; then
+		rm new-sum
+	else
+		mv new-sum sum
+		echo 'latex-beamer'
+	fi
+	rm overview
+elif [ ! -f unfetchable ]; then
+	touch unfetchable
+	echo 'latex-beamer (unfetchable)'
+fi
+
