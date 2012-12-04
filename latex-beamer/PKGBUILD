@@ -1,0 +1,24 @@
+# Maintainer: Mattias Andrée <maandree@operamail.com>
+# Contributor: Daniel Ehlers <danielehlers@mindeye.net>
+
+pkgname=latex-beamer
+pkgver=3_24
+pkgrel=1
+pkgdesc='Beamer is a LaTeX class for creating slides for presentations.'
+arch=('any')
+url='http://bitbucket.org/rivanvx/beamer/wiki/Home'
+license=('GPL')
+install='latex-beamer.install'
+depends=('texlive-core')
+source=("https://bitbucket.org/rivanvx/beamer/get/version-${pkgver//_/-}.tar.bz2")
+md5sums=('520aa621651b69704b7b61f0fdfc3b86')
+
+
+package() {
+  cd rivanvx-beamer-*
+  
+  install -d ${pkgdir}/usr/share/texmf-dist/tex/latex/beamer
+
+  cp -r  * ${pkgdir}/usr/share/texmf-dist/tex/latex/beamer
+}
+
