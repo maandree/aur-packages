@@ -1,6 +1,6 @@
 #!/bin/sh
 
-[ -f 'index.html' ] &&  rm 'index.html'
+[ -f 'overview' ] &&  rm 'overview'
 wget https://bitbucket.org/rivanvx/beamer/overview >/dev/null 2>/dev/null
 if [ $? = 0 ]; then
 	[ -f unfetchable ] && rm unfetchable
