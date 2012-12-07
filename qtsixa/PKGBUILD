@@ -1,7 +1,7 @@
 # Maintainer: Mattias Andrée <maandree@operamail.com>
 pkgname=qtsixa
 pkgver=1.5.1
-pkgrel=10
+pkgrel=11
 pkgdesc="An utility to configure and use sixaxis controller via bluetooth."
 url="http://sourceforge.net/projects/qtsixa/"
 arch=('i686' 'x86_64' 'ppc')
@@ -31,7 +31,7 @@ build() {
 	patch -p0 < $srcdir/sixad-bin.patch
 	patch -p0 < $srcdir/sixad-shared-h.patch
 	patch -p0 < $srcdir/qtsixa-dbus.patch
-	patch -p0 < $srcdir/qtsixa-gksudo.path
+	patch -p0 < $srcdir/qtsixa-gksudo.patch
 	
 	cd $srcdir/QtSixA-$pkgver/qtsixa/gui/
 	echo "Fixed python version..."
