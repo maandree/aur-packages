@@ -16,7 +16,7 @@ source=(http://downloads.sourceforge.net/qtsixa/QtSixA-"$pkgver"-src.tar.gz
 	sixad-shared-h.patch
 	sixad.service
 	qtsixa-dbus.patch
-	qtsixa-gksudo.path)
+	qtsixa-gksudo.patch)
 md5sums=('d61bef5d737367aeddd57a6bc11da52a'
 	 'a8c7585f628ac5b2eafeb735e3eab28b'
 	 '0496d5e8c16b4519042bd024ad07b32d'
