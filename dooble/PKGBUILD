@@ -2,26 +2,26 @@
 # Maintainer:  Mattias Andrée
 
 pkgname=dooble
-pkgver=1.37
+pkgver=1.38
 pkgrel=1
 pkgdesc='A safe WebKit Web browser'
 url=http://dooble.sourceforge.net/
 arch=(i686 x86_64)
 license=(GPL2)
-source=("http://downloads.sourceforge.net/project/dooble/Version%201.37/Dooble_Lin64.tar.gz?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fdooble%2Ffiles%2FVersion%25201.37%2F&ts=1352909582&use_mirror=freefr")
-md5sums=(3ba01abc425130d9870c81919a909096)
+source=("https://downloads.sourceforge.net/project/dooble/Version%201.38/Dooble_Lin64.tar.gz?r=&ts=1358219172&use_mirror=heanet")
+md5sums=(6f38c6981022966791e14e7694c72dd6)
 depends=(libpng12)
 
 _sedfiles="dooble.sh qt.conf"
 
 [ "${CARCH}" == 'i686' ] &&
-  source[0]="http://downloads.sourceforge.net/project/dooble/Version%201.37/Dooble_Lin32.tar.gz?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fdooble%2Ffiles%2FVersion%25201.37%2F&ts=1352909582&use_mirror=freefr" &&
-  md5sums[0]=c1aab6e21f387ee4046cf9fe357a151f
+  source[0]="https://downloads.sourceforge.net/project/dooble/Version%201.38/Dooble_Lin32.tar.gz?r=&ts=1358219172&use_mirror=heanet" &&
+  md5sums[0]=a19ca86cf5bff9a382bdbdd1e7060225
 
 
 package()
 {
-	msg "Moving precompiled files into \$pkgfir"
+	msg "Moving precompiled files into \$pkgdir"
 	
 	mv "$srcdir/usr" "$pkgdir"
 	
@@ -38,17 +38,13 @@ package()
 	
 	for file in $_sedfiles
 	do
-	    cp "$pkgdir/opt/dooble/$file" "$pkgdir/opt/dooble/$file~"
-	    sed -e s/'\/usr\/local\/dooble'/'\/opt\/dooble'/g < "$pkgdir/opt/dooble/$file~" > "$pkgdir/opt/dooble/$file"
-	    rm "$pkgdir/opt/dooble/$file~"
+	    sed -i s_'/usr/local/dooble'_'/opt/dooble'_g "$pkgdir/opt/dooble/$file"
 	done
 	
 	for file in "Dooble"
 	do
-	    cp "$pkgdir/opt/dooble/$file" "$pkgdir/opt/dooble/$file~"
             ## hehehe
-	    sed -e s/'\/usr\/local\/dooble\/Lib\x00'/'\/opt\/dooble\/Lib\x00\x00\x00\x00\x00\x00\x00'/g < "$pkgdir/opt/dooble/$file~" > "$pkgdir/opt/dooble/$file"
-	    rm "$pkgdir/opt/dooble/$file~"
+	    sed -i s_'/usr/local/dooble/Lib\x00'_'/opt/dooble/Lib\x00\x00\x00\x00\x00\x00\x00'_g  "$pkgdir/opt/dooble/$file"
 	done
 	
 	
