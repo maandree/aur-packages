@@ -18,3 +18,4 @@ pkg/
 *.old
 *.diff
 index.*
+*.zip
