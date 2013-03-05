@@ -1,0 +1,21 @@
+#!/bin/sh
+
+[ -f 'opencascade-pkgbuild' ] &&  rm 'opencascade-pkgbuild'
+
+wget 'https://aur.archlinux.org/packages/op/opencascade/PKGBUILD' -O 'opencascade-pkgbuild' >/dev/null 2>/dev/null
+
+if [ $? = 0 ]; then
+	[ -f unfetchable ] && rm unfetchable
+	grep ^md5sums= < opencascade-pkgbuild | md5sum > new-sum
+	touch sum
+	if [ "$(cat sum)" = "$(cat new-sum)" ]; then
+		rm new-sum
+	else
+		mv new-sum sum
+		echo 'opencascade-pkgbuild' "$(grep ^md5sums= < opencascade-pkgbuild | sed -e s_md5sums=__g -e s_\'__g)"')'
+	fi
+elif [ ! -f unfetchable ]; then
+	touch unfetchable
+	echo 'opencascade-docs (unfetchable)'
+fi
+
