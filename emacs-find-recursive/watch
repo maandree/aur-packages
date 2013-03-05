@@ -1,0 +1,21 @@
+#!/bin/sh
+
+[ -f find-recursive.el ] &&  rm find-recursive.el
+
+wget 'http://www.webweavertech.com/ovidiu/emacs/find-recursive.txt' -O find-recursive.el >/dev/null 2>/dev/null
+
+if [ $? = 0 ]; then
+	[ -f unfetchable ] && rm unfetchable
+	md5sum find-recursive.el > new-sum
+	touch sum
+	if [ "$(cat sum)" = "$(cat new-sum)" ]; then
+		rm new-sum
+	else
+		mv new-sum sum
+		echo 'emacs-find-recursive'
+	fi
+elif [ ! -f unfetchable ]; then
+	touch unfetchable
+	echo 'emacs-find-recursive (unfetchable)'
+fi
+
