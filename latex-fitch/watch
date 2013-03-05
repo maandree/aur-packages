@@ -1,0 +1,21 @@
+#!/bin/sh
+
+[ -f fitch.sty ] &&  rm fitch.sty
+
+wget 'http://folk.uio.no/johanw/fitch.sty' -O fitch.sty >/dev/null 2>/dev/null
+
+if [ $? = 0 ]; then
+	[ -f unfetchable ] && rm unfetchable
+	md5sum fitch.sty > new-sum
+	touch sum
+	if [ "$(cat sum)" = "$(cat new-sum)" ]; then
+		rm new-sum
+	else
+		mv new-sum sum
+		echo 'latex-fitch' '('"$(cat sum)"')'
+	fi
+elif [ ! -f unfetchable ]; then
+	touch unfetchable
+	echo 'latex-fitch (unfetchable)'
+fi
+
