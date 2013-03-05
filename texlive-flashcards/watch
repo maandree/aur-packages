@@ -1,0 +1,21 @@
+#!/bin/sh
+
+[ -f flashcards ] &&  rm flashcards
+
+wget 'http://ctan.org/pkg/flashcards' -O flashcards >/dev/null 2>/dev/null
+
+if [ $? = 0 ]; then
+	[ -f unfetchable ] && rm unfetchable
+	grep 'Ver&shy;sion' < flashcards | md5sum > new-sum
+	touch sum
+	if [ "$(cat sum)" = "$(cat new-sum)" ]; then
+		rm new-sum
+	else
+		mv new-sum sum
+		echo 'texlive-flashcards'
+	fi
+elif [ ! -f unfetchable ]; then
+	touch unfetchable
+	echo 'texlive-flashcards (unfetchable)'
+fi
+
