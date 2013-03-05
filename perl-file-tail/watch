@@ -1,0 +1,21 @@
+#!/bin/sh
+
+[ -f file-tail ] &&  rm file-tail
+
+wget 'http://search.cpan.org/~mgrabnar/File-Tail-0.99.3/Tail.pm' -O file-tail >/dev/null 2>/dev/null
+
+if [ $? = 0 ]; then
+	[ -f unfetchable ] && rm unfetchable
+	grep 'Module Version:' < file-tail | md5sum > new-sum
+	touch sum
+	if [ "$(cat sum)" = "$(cat new-sum)" ]; then
+		rm new-sum
+	else
+		mv new-sum sum
+		echo 'perl-file-tail'
+	fi
+elif [ ! -f unfetchable ]; then
+	touch unfetchable
+	echo 'perl-file-tail (unfetchable)'
+fi
+
