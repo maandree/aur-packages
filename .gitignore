@@ -19,10 +19,13 @@ pkg/
 *.diff
 index.*
 *.zip
+*.release
+*.el
+*.elc
+*.txt
+*.sty
+*-pkgbuild
 
-/emacs-find-recursive/find-recursive.txt
-/latex-fitch/fitch.sty
-/opencascade-docs/opencascade-pkgbuild
 /perl-file-tail/file-tail
 /texlive-flashcards/flashcards
 
