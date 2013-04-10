@@ -9,7 +9,6 @@ url="http://www.emacswiki.org/emacs/ParEdit"
 license=('GPL')
 makedepends=('emacs')
 install=paredit.install
-changelog=ChangeLog
 source=("http://mumble.net/~campbell/emacs/$pkgname-${_pkgver}.el")
 sha256sums=('c8d154870902b1b8aad44168560c8785d5eff552e44b36baa493f5fda540e8da')
 
