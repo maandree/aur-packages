@@ -2,7 +2,7 @@
 
 [ -f paredit.release ] &&  rm paredit.release
 
-wget 'http://mumble.net/~campbell/emacs/paredit.release' -O paredit.release >/dev/null 2>/dev/null
+wget 'http://mumble.net/~campbell/emacs' -O paredit.release >/dev/null 2>/dev/null
 
 if [ $? = 0 ]; then
 	[ -f unfetchable ] && rm unfetchable
