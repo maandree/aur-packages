@@ -1,0 +1,44 @@
+# Maintainer: Mattias Andrée <`base64 -d`(bWFhbmRyZWUK)@member.fsf.org>
+# Contributor: Gianni Vialetto <g.vialetto@gmail.com>
+# Contributor: Nick Vogel <vogelrn+aur@gmail.com>
+
+pkgname=emacs-clojure-mode-git
+pkgver=20130411
+pkgrel=1
+arch=('any')
+pkgdesc="Emacs major mode for the clojure language (GIT version)"
+url="https://github.com/technomancy/clojure-mode"
+license="GPL3"
+depends=('emacs')
+optdepends=('paredit: enhanced LISP structure editing')
+makedepends=('git')
+provides=('emacs-clojure-mode')
+replaces=('emacs-clojure-mode')
+install='emacs-clojure-mode-git.install'
+
+_gitroot="https://github.com/technomancy/clojure-mode.git"
+_gitname="clojure-mode"
+build() {
+  cd $startdir/src
+  msg "Connecting to github.com GIT server...."
+
+  if [ -d $startdir/src/$_gitname ] ; then
+    cd $_gitname && git pull origin
+    msg "The local files are updated."
+  else
+    git clone $_gitroot
+  fi
+
+  msg "GIT checkout done or server timeout"
+} 
+
+package() {
+  cd $startdir/src/$_gitname
+
+  install -d $pkgdir/usr/share/emacs/site-lisp/
+  
+  # install the files in directory created above
+  install -m644 clojure-mode.el -t $pkgdir/usr/share/emacs/site-lisp/
+  install -m644 clojure-test-mode.el -t $pkgdir/usr/share/emacs/site-lisp/
+}
+

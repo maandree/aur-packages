@@ -1,0 +1,21 @@
+#!/bin/sh
+
+[ -f tags ] &&  rm tags
+
+wget 'https://github.com/technomancy/clojure-mode/tags' -O -  | grep tag-name | grep -Po '>.*</' > tags 2>/dev/null
+
+if [ $? = 0 ]; then
+	[ -f unfetchable ] && rm unfetchable
+	md5sum tags > new-sum
+	touch sum
+	if [ "$(cat sum)" = "$(cat new-sum)" ]; then
+		rm new-sum
+	else
+		mv new-sum sum
+		echo 'emacs-clojure-mode-git'
+	fi
+elif [ ! -f unfetchable ]; then
+	touch unfetchable
+	echo 'emacs-clojure-mode-git (unfetchable)'
+fi
+
