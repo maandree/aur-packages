@@ -2,21 +2,17 @@
 # Maintainer:  Mattias Andrée
 
 pkgname=dooble
-pkgver=1.38
+pkgver=1.41
 pkgrel=1
 pkgdesc='A safe WebKit Web browser'
 url=http://dooble.sourceforge.net/
-arch=(i686 x86_64)
+arch=(x86_64)
 license=(GPL2)
-source=("https://downloads.sourceforge.net/project/dooble/Version%201.38/Dooble_Lin64.tar.gz?r=&ts=1358219172&use_mirror=heanet")
-md5sums=(6f38c6981022966791e14e7694c72dd6)
+source=("http://downloads.sourceforge.net/project/dooble/Version%201.41/Dooble_Lin64.tar.gz?r=&ts=1365713519&use_mirror=netcologne")
+md5sums=(7f005db2e1a057fe7f5c871855c6e25d)
 depends=(libpng12)
 
 _sedfiles="dooble.sh qt.conf"
-
-[ "${CARCH}" == 'i686' ] &&
-  source[0]="https://downloads.sourceforge.net/project/dooble/Version%201.38/Dooble_Lin32.tar.gz?r=&ts=1358219172&use_mirror=heanet" &&
-  md5sums[0]=a19ca86cf5bff9a382bdbdd1e7060225
 
 
 package()
@@ -46,6 +42,14 @@ package()
             ## hehehe
 	    sed -i s_'/usr/local/dooble/Lib\x00'_'/opt/dooble/Lib\x00\x00\x00\x00\x00\x00\x00'_g  "$pkgdir/opt/dooble/$file"
 	done
+	
+	# libudev.so.0 does not exist, but libudev.so.1 works
+	sed -i 's_libudev.so.0_libudev.so\x00\x00_g' "$pkgdir/opt/dooble/Lib/libQt5WebKit.so.5"
+	sed -i 's_libudev.so.0_libudev.so\x00\x00_g' "$pkgdir/opt/dooble/Plugins/generic/libqevdevtabletplugin.so"
+	sed -i 's_libudev.so.0_libudev.so\x00\x00_g' "$pkgdir/opt/dooble/Plugins/generic/libqevdevkeyboardplugin.so"
+	sed -i 's_libudev.so.0_libudev.so\x00\x00_g' "$pkgdir/opt/dooble/Plugins/generic/libqevdevtouchplugin.so"
+	sed -i 's_libudev.so.0_libudev.so\x00\x00_g' "$pkgdir/opt/dooble/Plugins/generic/libqevdevmouseplugin.so"
+
 	
 	
 	msg "Renaming \$pkgdir/opt/dooble/dooble.sh to \$pkgdir/opt/dooble/dooble"
