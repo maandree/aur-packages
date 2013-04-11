@@ -2,7 +2,7 @@
 
 [ -f tags ] &&  rm tags
 
-wget 'https://github.com/technomancy/clojure-mode/tags' -O -  | grep tag-name | grep -Po '>.*</' > tags 2>/dev/null
+wget 'https://github.com/technomancy/clojure-mode/tags' -O - 2>/dev/null | grep tag-name | grep -Po '>.*</' > tags
 
 if [ $? = 0 ]; then
 	[ -f unfetchable ] && rm unfetchable

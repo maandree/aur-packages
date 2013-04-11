@@ -1,0 +1,23 @@
+# Maintainer: Mattias Andrée <`base64 -d`(bWFhbmRyZWUK)@member.fsf.org>
+pkgname=syncterm
+pkgver=0.9.5b
+pkgrel=1
+pkgdesc="A BBS terminal program."
+url="http://syncterm.bbsdev.net"
+license='GPL'
+depends=('ncurses')
+options=(!buildflags)
+arch=('i686' 'x86_64')
+source=(http://syncterm.bbsdev.net/syncterm-src.tgz)
+md5sums=('7225918037976da8550490676165c9d0')
+
+build() {
+	cd "$srcdir/syncterm-"*
+	cd "src/syncterm/"
+	make PREFIX="/usr"
+}
+
+package() {
+	make PREFIX="$pkgdir/usr" install
+}
+

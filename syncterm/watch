@@ -1,0 +1,21 @@
+#!/bin/sh
+
+[ -f release ] &&  rm release
+
+wget http://syncterm.bbsdev.net -O - 2>/dev/null | grep "syncterm-src.tgz" > release
+
+if [ $? = 0 ]; then
+	[ -f unfetchable ] && rm unfetchable
+	md5sum release > new-sum
+	touch sum
+	if [ "$(cat sum)" = "$(cat new-sum)" ]; then
+		rm new-sum
+	else
+		mv new-sum sum
+		echo 'syncterm'
+	fi
+elif [ ! -f unfetchable ]; then
+	touch unfetchable
+	echo 'syncterm (unfetchable)'
+fi
+
