@@ -23,6 +23,7 @@ build() {
 }
 
 package() {
+	cd "$srcdir/vectex-$pkgver"
 	install -D -m755 vectex.so "$pkgdir/usr/share/blender/plugins/texture/vectex.so"
 }
 
