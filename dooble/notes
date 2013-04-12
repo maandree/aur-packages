@@ -1,0 +1,3 @@
+svn co https://dooble.svn.sourceforge.net/svnroot/dooble dooble
+qmake -o Makefile dooble.pro && make
+
