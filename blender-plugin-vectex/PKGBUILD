@@ -1,7 +1,7 @@
 # Maintainer: Mattias Andrée <`base64 -d`(bWFhbmRyZWUK)@member.fsf.org>
 pkgname=blender-plugin-vectex
 pkgver=0.9
-pkgrel=1
+pkgrel=2
 pkgdesc="Vectex is a SVG vector texture plugin for Blender"
 url="http://code.google.com/p/vectex/"
 license="GPL"
@@ -19,7 +19,7 @@ build() {
 	fi
 
 	msg "Starting build process."
-	make || return 1
+	MAKEFLAGS= make || return 1
 }
 
 package() {
