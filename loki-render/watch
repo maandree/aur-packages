@@ -1,0 +1,21 @@
+#!/bin/sh
+
+[ -f release ] &&  rm release
+
+wget 'http://loki-render.berlios.de/index.php/download' -O - 2>/dev/null | grep lokiRender > release
+
+if [ $? = 0 ]; then
+	[ -f unfetchable ] && rm unfetchable
+	md5sum release > new-sum
+	touch sum
+	if [ "$(cat sum)" = "$(cat new-sum)" ]; then
+		rm new-sum
+	else
+		mv new-sum sum
+		echo 'loki-render'
+	fi
+elif [ ! -f unfetchable ]; then
+	touch unfetchable
+	echo 'loki-render (unfetchable)'
+fi
+
