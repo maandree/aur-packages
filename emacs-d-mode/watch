@@ -1,0 +1,21 @@
+#!/bin/sh
+
+[ -f release ] &&  rm release
+
+wget https://github.com/Emacs-D-Mode-Maintainers/Emacs-D-Mode/tags -O - 2>/dev/null | grep tag-name | grep -Po '>.+</' > release
+
+if [ $? = 0 ]; then
+	[ -f unfetchable ] && rm unfetchable
+	md5sum release > new-sum
+	touch sum
+	if [ "$(cat sum)" = "$(cat new-sum)" ]; then
+		rm new-sum
+	else
+		mv new-sum sum
+		echo 'emacs-d-mode'
+	fi
+elif [ ! -f unfetchable ]; then
+	touch unfetchable
+	echo 'emacs-d-mode (unfetchable)'
+fi
+
