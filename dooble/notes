@@ -1,3 +1,8 @@
 svn co https://dooble.svn.sourceforge.net/svnroot/dooble dooble
-qmake -o Makefile dooble.pro && make
+cd dooble/trunk/browser/
+qmake-qt4 -o Makefile dooble.pro
+make
+
+
+make dependencies: qt4 svn
 
