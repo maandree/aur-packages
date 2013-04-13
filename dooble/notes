@@ -2,7 +2,7 @@ options=(!emptydir) ## or do: ls -1 /dev/shm | grep -v '^usr$' | xargs rm -r
 
 svn co https://dooble.svn.sourceforge.net/svnroot/dooble dooble
 cd dooble/trunk/browser/
-sed -i 's/-Werror//g' dooble.pro
+sed -i 's_-Werror__g' dooble.pro
 qmake-qt4 -o Makefile dooble.pro
 make
 make INSTALL_ROOT="$pkgdir" install
