@@ -1,3 +1,5 @@
+options=(!emptydir) ## or do: ls -1 /dev/shm | grep -v '^usr$' | xargs rm -r
+
 svn co https://dooble.svn.sourceforge.net/svnroot/dooble dooble
 cd dooble/trunk/browser/
 sed -i 's/-Werror//g' dooble.pro
