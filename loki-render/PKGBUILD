@@ -2,7 +2,8 @@
 pkgname=loki-render
 pkgver=0.6.2b
 _pkgver=${pkgver//\./}
-pkgrel=2
+epoch=1
+pkgrel=1
 pkgdesc="Distribute the rendering of Blender 3D images (frames) across several computers"
 arch=('any')
 url="http://loki-render.berlios.de"
