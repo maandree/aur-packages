@@ -1,8 +1,9 @@
 svn co https://dooble.svn.sourceforge.net/svnroot/dooble dooble
 cd dooble/trunk/browser/
+sed -i 's/-Werror//g' dooble.pro
 qmake-qt4 -o Makefile dooble.pro
 make
-
+make INSTALL_ROOT="$pkgdir" install
 
 make dependencies: qt4 svn
 
