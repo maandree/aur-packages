@@ -7,7 +7,7 @@ pkgdesc="Distribute the rendering of Blender 3D images (frames) across several c
 arch=('any')
 url="http://loki-render.berlios.de"
 license=('GPL')
-depends=('blender' 'java-runtime')
+depends=('blender' 'java-runtime>=6')
 makedepends=()
 source=("loki-render" "http://downloads.sourceforge.net/project/loki-render/loki-render/${pkgver}/lokiRender_${_pkgver}.zip")
 md5sums=('eddfd1fcf7a40b7855eb9d4e22831a37'
