@@ -1,7 +1,8 @@
 # Maintainer: Mattias Andrée <`base64 -d`(bWFhbmRyZWUK)@member.fsf.org>
 pkgname=dooble
-pkgver=1.41
-pkgrel=2
+pkgver=1.42_dev
+pkgrel=1
+_r=r5278
 pkgdesc='A safe WebKit Web browser'
 url='http://dooble.sourceforge.net/'
 arch=('i386' 'x86_64')
@@ -18,7 +19,7 @@ options=('!emptydirs')
 build()
 {
     cd "$srcdir"
-    svn co "https://dooble.svn.sourceforge.net/svnroot/dooble" dooble
+    svn co -r "${_r}" "https://dooble.svn.sourceforge.net/svnroot/dooble" dooble
     cd "dooble/trunk/browser/"
     sed -i 's_-Werror__g' dooble.pro
     qmake-qt4 -o Makefile dooble.pro
@@ -43,11 +44,13 @@ package()
     msg "Renaming \$pkgdir/opt/dooble/dooble.sh to \$pkgdir/opt/dooble/dooble"
     mv "$pkgdir/opt/dooble/dooble.sh" "$pkgdir/opt/dooble/dooble"
     
-    # XXX: This will have been resolved in 1.42
+    # XXX: This will have been resolved in 1.42 (without -dev)
     if [ ! -f "$pkgdir/opt/dooble/Lib/libspoton.so" ]; then
         msg "Installing files missed by the installer"
         mkdir -p "$pkgdir/opt/dooble/Lib"
         cp "$srcdir/dooble/trunk/browser/LibSpotOn/libspoton.so" "$pkgdir/opt/dooble/Lib"
+    else
+        msg "Notify maintainer about obsolete installation instruction."
     fi
 }
 
