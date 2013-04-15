@@ -38,7 +38,7 @@ package()
     
     msg "Editing files for the file structure modification"
     sed -i s_'/usr/local/dooble'_'/opt/dooble'_g "$pkgdir/opt/dooble/dooble.sh"
-    sed -i s_'/usr/local/dooble/Lib\x00'_'/opt/dooble/Lib\x00\x00\x00\x00\x00\x00\x00'_g  "$pkgdir/opt/dooble/Dooble"
+    sed -i s_'/usr/local/dooble/Lib\x00'_'/opt/dooble/Lib\x00\x00\x00\x00\x00\x00\x00'_g "$pkgdir/opt/dooble/Dooble"
     
     msg "Renaming \$pkgdir/opt/dooble/dooble.sh to \$pkgdir/opt/dooble/dooble"
     mv "$pkgdir/opt/dooble/dooble.sh" "$pkgdir/opt/dooble/dooble"
