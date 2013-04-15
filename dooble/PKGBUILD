@@ -43,8 +43,11 @@ package()
     msg "Renaming \$pkgdir/opt/dooble/dooble.sh to \$pkgdir/opt/dooble/dooble"
     mv "$pkgdir/opt/dooble/dooble.sh" "$pkgdir/opt/dooble/dooble"
     
-    msg "Installing files missed by the installer"
-    mkdir -p "$pkgdir/opt/dooble/Lib"
-    cp "$srcdir/dooble/trunk/browser/LibSpotOn/libspoton.so" "$pkgdir/opt/dooble/Lib"
+    # XXX: This will have been resolved in 1.42
+    if [ ! -f "$pkgdir/opt/dooble/Lib/libspoton.so" ]; then
+        msg "Installing files missed by the installer"
+        mkdir -p "$pkgdir/opt/dooble/Lib"
+        cp "$srcdir/dooble/trunk/browser/LibSpotOn/libspoton.so" "$pkgdir/opt/dooble/Lib"
+    fi
 }
 
