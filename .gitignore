@@ -6,6 +6,7 @@
 *.swp
 *.bak
 
+*.tgz
 *.gz
 *.xz
 *.bz2
@@ -20,6 +21,7 @@ pkg/
 index.*
 *.zip
 *.release
+release
 *.el
 *.elc
 *.txt
