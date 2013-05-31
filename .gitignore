@@ -30,4 +30,5 @@ release
 
 /perl-file-tail/file-tail
 /texlive-flashcards/flashcards
-
+*.[0-9]
+tags
