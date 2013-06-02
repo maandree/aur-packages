@@ -4,7 +4,7 @@ pkgver=2.88
 pkgrel=10
 pkgdesc='Linux System V Init'
 url='http://savannah.nongnu.org/projects/sysvinit'
-arch=('i386' 'x86_64')
+arch=('i686' 'x86_64')
 license=('GPL')
 depends=('sysvinit-tools')
 
