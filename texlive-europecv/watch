@@ -1,0 +1,21 @@
+#!/bin/sh
+
+[ -f europecv.release ] &&  rm europecv.release
+
+wget 'http://mirror.ctan.org/macros/latex/contrib/europecv.zip' -O europecv.release >/dev/null 2>/dev/null
+
+if [ $? = 0 ]; then
+	[ -f unfetchable ] && rm unfetchable
+	md5sum europecv.release > new-sum
+	touch sum
+	if [ "$(cat sum)" = "$(cat new-sum)" ]; then
+		rm new-sum
+	else
+		mv new-sum sum
+		echo 'texlive-europecv'
+	fi
+elif [ ! -f unfetchable ]; then
+	touch unfetchable
+	echo 'texlive-europecv (unfetchable)'
+fi
+

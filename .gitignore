@@ -27,6 +27,7 @@ release
 *.txt
 *.sty
 *-pkgbuild
+unfetchable
 
 /perl-file-tail/file-tail
 /texlive-flashcards/flashcards
