@@ -51,6 +51,9 @@ build() {
 
 	make all || exit 1
 
+}
+
+package() {
 ## Qtsixa installation, adapted from makefile of qtsixa folder ##
 ## make directories
 mkdir -p \
@@ -126,3 +129,4 @@ cd ../utils
 	install -m 755 bins/sixad-jack "$pkgdir"/usr/bin/
 
 } 
+
