@@ -1,0 +1,19 @@
+#!/bin/sh
+
+wget 'http://cgit.freedesktop.org/ConsoleKit' -O - 2>/dev/null | grep -Po '\.tar.+>ConsoleKit-.+\.tar' | head -n 1 > release
+
+if [ $? = 0 ]; then
+	[ -f unfetchable ] && rm unfetchable
+	md5sum release > new-sum
+	touch sum
+	if [ "$(cat sum)" = "$(cat new-sum)" ]; then
+		rm new-sum
+	else
+		mv new-sum sum
+		echo 'consolekit-git'
+	fi
+elif [ ! -f unfetchable ]; then
+	touch unfetchable
+	echo 'consolekit-git (unfetchable)'
+fi
+
