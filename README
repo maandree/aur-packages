@@ -1,3 +1,14 @@
 AUR* packages I maintain, but do not develop
 
 *AUR = Arch (Linux) User Repository
+
+
+The file /watch executes the watch file in each
+directory. This lists all packages that has been
+updated upstream and each upstream that is not
+reachable.
+
+I run this automatically every half hour and my
+RSS reader will notify me when there are packages
+in need of update.
+
