@@ -4,9 +4,9 @@
 # Contributor: onestep_ua <onestep@ukr.net>
 
 pkgname=consolekit-git
-pkgver=393.9be71ac
+pkgver=0.4.6.20130719
 pkgrel=1
-epoch=1
+epoch=2
 pkgdesc="A framework for defining and tracking users, login sessions, and seats"
 arch=('i686' 'x86_64')
 url="http://www.freedesktop.org/wiki/Software/ConsoleKit"
