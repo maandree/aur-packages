@@ -1,4 +1,6 @@
 # Maintainer: Mattias Andrée <`base64 -d`(bWFhbmRyZWUK)@member.fsf.org>
+# Contributor: Andrea Scarpino <andrea@archlinux.org>
+
 pkgname=texlive-europecv
 pkgver=1
 pkgrel=1

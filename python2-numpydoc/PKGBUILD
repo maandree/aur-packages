@@ -1,4 +1,6 @@
-# Maintainer: Mattias Andrée <maandree@operamail.com>
+# Maintainer: Mattias Andrée <`base64 -d`(bWFhbmRyZWUK)@member.fsf.org>
+# Previous maintainer: Elena ``of Valhalla'' Grandi <elena.valhalla@gmail.com>
+
 pkgname=python2-numpydoc
 pkgver=0.4
 pkgrel=1

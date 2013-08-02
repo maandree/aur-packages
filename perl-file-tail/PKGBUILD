@@ -1,4 +1,6 @@
 # Maintainer: Mattias Andrée <`base64 -d`(bWFhbmRyZWUK)@member.fsf.org>
+# Previous maintainer: Kevin Piche <kevin@archlinux.org>
+
 pkgname=perl-file-tail
 _realname=File-Tail
 pkgver=0.99.3
