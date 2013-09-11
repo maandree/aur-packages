@@ -1,0 +1,21 @@
+#!/bin/sh
+
+[ -f fitch ] &&  rm fitch
+
+wget 'http://www.mathstat.dal.ca/~selinger/fitch' -O fitch >/dev/null 2>/dev/null
+
+if [ $? = 0 ]; then
+	[ -f unfetchable ] && rm unfetchable
+	md5sum fitch > new-sum
+	touch sum
+	if [ "$(cat sum)" = "$(cat new-sum)" ]; then
+		rm new-sum
+	else
+		mv new-sum sum
+		echo 'latex-fitch-uoo'
+	fi
+elif [ ! -f unfetchable ]; then
+	touch unfetchable
+	echo 'latex-fitch-uoo (unfetchable)'
+fi
+
