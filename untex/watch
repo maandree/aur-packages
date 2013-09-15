@@ -1,0 +1,21 @@
+#!/bin/sh
+
+[ -f index.html ] &&  rm index.html
+
+wget 'ftp://ftp.thp.uni-duisburg.de/pub/source/' -O index.html >/dev/null 2>/dev/null
+
+if [ $? = 0 ]; then
+	[ -f unfetchable ] && rm unfetchable
+	grep -o '>untex-.*<' < index.html | md5sum > new-sum
+	touch sum
+	if [ "$(cat sum)" = "$(cat new-sum)" ]; then
+		rm new-sum
+	else
+		mv new-sum sum
+		echo 'untex'
+	fi
+elif [ ! -f unfetchable ]; then
+	touch unfetchable
+	echo 'untex (unfetchable)'
+fi
+
