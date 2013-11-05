@@ -43,8 +43,8 @@ package()
     cd "$pkgdir/__temp__"
     rm "bin/pidof"
     ln -s "../sbin/killall5" "bin/pidof"
-    rm -r bin sbin/{sulogin,bootlogd,fstab-decode,killall5} usr/bin \
-          usr/share/man/man?/{mesg,mountpoint,pidof,sulogin,utmpdump,wall,last,lastb,bootlogd,fstab-decode,killall5}.?
+    rm -r bin sbin/{bootlogd,fstab-decode,killall5} usr/bin \
+          usr/share/man/man?/{mesg,mountpoint,pidof,utmpdump,wall,last,lastb,bootlogd,fstab-decode,killall5}.?
     find . | while read file; do
         if [ -d "$file" ]; then
             mkdir -p ".$file"
