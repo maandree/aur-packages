@@ -42,7 +42,7 @@ package()
 {
     cd "$srcdir/$pkgname-${pkgver}dsf"
     mkdir -p "$pkgdir/__temp__"
-    make ROOT="$pkgdir/__temp__" install
+    make DISTRO=archlinux ROOT="$pkgdir/__temp__" install
     cd "$pkgdir/__temp__"
     rm "bin/pidof"
     ln -s "../sbin/killall5" "bin/pidof"
