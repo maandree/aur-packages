@@ -47,7 +47,7 @@ package()
     rm "bin/pidof"
     ln -s "../sbin/killall5" "bin/pidof"
     rm -r bin sbin/{bootlogd,fstab-decode,killall5} usr/bin \
-          usr/share/man/man?/{mesg,mountpoint,pidof,utmpdump,wall,last,lastb,bootlogd,fstab-decode,killall5}.?
+          usr/share/man/man?/{mesg,pidof,utmpdump,wall,last,lastb,bootlogd,fstab-decode,killall5}.?
     find . | while read file; do
         if [ -d "$file" ]; then
             mkdir -p ".$file"
