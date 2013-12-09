@@ -44,7 +44,7 @@ package()
     mkdir -p "$pkgdir/__temp__"
     make DISTRO=archlinux ROOT="$pkgdir/__temp__" install
     cd "$pkgdir/__temp__"
-    rm -r bin usr/bin usr/share/man/man?/{mesg,utmpdump,wall,last,pidof}.?
+    rm -r bin usr/bin usr/share/man/man?/{mesg,utmpdump,wall,last,pidof}.? usr/share/man/man1
     find . | while read file; do
         if [ -d "$file" ]; then
             mkdir -p ".$file"
