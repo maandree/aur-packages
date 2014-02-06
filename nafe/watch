@@ -1,0 +1,20 @@
+#!/bin/sh
+
+[ -f 'version' ] &&  rm 'version'
+wget http://sourceforge.net/projects/nafe/files/nafe -O - | grep -o 'Download nafe-[^)]*B)' > version
+if [ $? = 0 ]; then
+	[ -f unfetchable ] && rm unfetchable
+	md5sum < version > new-sum
+	touch sum
+	if [ "$(cat sum)" = "$(cat new-sum)" ]; then
+		rm new-sum
+	else
+		mv new-sum sum
+		echo 'nafe'
+	fi
+	rm version
+elif [ ! -f unfetchable ]; then
+	touch unfetchable
+	echo 'nafe (unfetchable)'
+fi
+
