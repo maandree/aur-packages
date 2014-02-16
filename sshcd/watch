@@ -1,0 +1,21 @@
+#!/bin/sh
+
+[ -f sshcd ] &&  rm sshcd
+
+wget 'https://github.com/christianbundy/sshcd/releases' -O sshcd >/dev/null 2>/dev/null
+
+if [ $? = 0 ]; then
+	[ -f unfetchable ] && rm unfetchable
+	grep -Po 'href="[^"]*\.tar\.gz"' < sshcd | md5sum > new-sum
+	touch sum
+	if [ "$(cat sum)" = "$(cat new-sum)" ]; then
+		rm new-sum
+	else
+		mv new-sum sum
+		echo 'sshcd'
+	fi
+elif [ ! -f unfetchable ]; then
+	touch unfetchable
+	echo 'sshcd (unfetchable)'
+fi
+
