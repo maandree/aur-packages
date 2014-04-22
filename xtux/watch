@@ -1,7 +1,7 @@
 #!/bin/sh
 
 [ -f 'files' ] &&  rm 'files'
-wget http://sourceforge.net/projects/xtux/files >/dev/null 2>/dev/null
+wget http://sourceforge.net/projects/xtux/files -O files >/dev/null 2>/dev/null
 if [ $? = 0 ]; then
 	[ -f unfetchable ] && rm unfetchable
 	grep 'Download xtux-src-' < files | md5sum > new-sum
