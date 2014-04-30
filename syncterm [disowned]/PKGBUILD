@@ -11,7 +11,7 @@ depends=('ncurses')
 options=(!buildflags)
 arch=('i686' 'x86_64')
 source=(http://syncterm.bbsdev.net/syncterm-src.tgz)
-md5sums=('196d9d144dddb23f2230245d921092f2')
+sha256sums=('f9699cb1c9bb34ad8430aa4f7c2a106a8c75e8eff0faabd32d667c6b1df3554d')
 
 
 build() {
