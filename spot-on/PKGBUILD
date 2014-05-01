@@ -2,7 +2,7 @@
 
 pkgname=spot-on
 pkgver=0.09.04
-pkgrel=1
+pkgrel=2
 pkgdesc='An exploratory research project investigating a variety of communications protocols'
 url='http://spot-on.sourceforge.net/'
 arch=('i686' 'x86_64')
@@ -25,7 +25,7 @@ package () {
     install -m755 -- ../../libSpotOn/libspoton.so "$pkgdir/usr/lib/libspoton.so"
     install -dm755 -- "$pkgdir/usr/lib/spot-on"
     install -m755 -- Spot-On "$pkgdir/usr/lib/spot-on/Spot-On"
-    install -m755 -- Spot-On "$pkgdir/usr/lib/spot-on/Spot-On-Kernel"
+    install -m755 -- Spot-On-Kernel "$pkgdir/usr/lib/spot-on/Spot-On-Kernel"
     install -dm755 -- "$pkgdir/usr/bin"
     ln -s ../lib/spot-on/Spot-On -- "$pkgdir/usr/bin/spot-on"
 }
