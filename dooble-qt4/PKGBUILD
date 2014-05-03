@@ -71,23 +71,22 @@ build()
 package()
 {
     cd "$srcdir/dooble.d/trunk/browser/"
-    mkdir -p -- "${pkgdir}/opt/${pkgname}"
-    cp Dooble -- "${pkgdir}/opt/${pkgname}/Dooble"
-    cp dooble.sh -- "${pkgdir}/opt/${pkgname}/dooble"
-    for d in Icons Images Plugins Tab Translations; do
-	ln -sf "../../usr/share/dooble/${d}" -- "${pkgdir}/opt/${pkgname}/${d}"
-    done
-    mkdir -p -- "${pkgdir}/opt/${pkgname}/applications"
-    cp dooble.desktop -- "${pkgdir}/opt/${pkgname}/applications/dooble.desktop"
+    install -Dm755  Dooble         -- "${pkgdir}/usr/lib/${pkgname}/Dooble"
+    install -Dm755  dooble.sh      -- "${pkgdir}/usr/bin/${pkgname}"
+    install -Dm644  dooble.desktop -- "${pkgdir}/usr/share/applications/${pkgname}.desktop"
     
-    msg "Editing files for the file structure modification"
-    sed -i s_"/usr/local/dooble"_"/opt/${pkgname}"_g  \
-	-- "${pkgdir}/opt/${pkgname}/dooble"
-    sed -i /LD_LIBRARY_PATH/d  \
-	-- "${pkgdir}/opt/${pkgname}/dooble"
+    
+    msg "Editing files for the file system adaption"
+    
+    sed -i s_"/usr/local/dooble/"_"/usr/lib/${pkgname}/"_g -- "${pkgdir}/usr/bin/${pkgname}"
+    sed -i s_"/usr/local/dooble"_"/usr/share/dooble"_g     -- "${pkgdir}/usr/bin/${pkgname}"
+    sed -i s_"\./Dooble"_"../../lib/${pkgname}/Dooble"_g   -- "${pkgdir}/usr/bin/${pkgname}"
+    sed -i /LD_LIBRARY_PATH/d                              -- "${pkgdir}/usr/bin/${pkgname}"
+    
     sed -i s_'/usr/local/dooble/Lib\x00'_'/usr/lib\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'_g  \
-	-- "${pkgdir}/opt/${pkgname}/Dooble" # The replacements's length must match the pattern's length
-    sed -i s_'/usr/local/dooble/dooble.sh'_"/opt/${pkgname}/dooble"_g  \
-	-- "${pkgdir}/opt/${pkgname}/applications/dooble.desktop"
+	-- "${pkgdir}/usr/lib/${pkgname}/Dooble" # The replacements's length must match the pattern's length
+    
+    sed -i s_'/usr/local/dooble/dooble.sh'_"/usr/bin/${pkgname}"_g  \
+	-- "${pkgdir}/usr/share/applications/${pkgname}.desktop"
 }
 
