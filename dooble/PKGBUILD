@@ -11,7 +11,6 @@ depends=('libpng' 'qt5-base' 'qt5-webkit' 'openssl' 'libspoton=0.09.04-1' "doobl
 makedepends=('libpng' 'qt5-base' 'qt5-webkit' 'openssl' 'qt5-tools' 'sed' 'coreutils')
 source=("http://downloads.sourceforge.net/project/dooble/Version%20${pkgver}/Dooble.d.tar.gz")
 sha256sums=('1840074b5648bd3755f7cefa65388e562c8d7159c119240e5c5efe0f7e1316b8')
-options=('!emptydirs')
 
 # Dependency (from ldd output) tree:
 # libpng
@@ -68,41 +67,23 @@ build()
 package()
 {
     cd "$srcdir/dooble.d/trunk/browser/"
-    make INSTALL_ROOT="$pkgdir" install
-    
-    msg "Fixing file structure"
-    mkdir -- "${pkgdir}/opt"
-    mv -- "${pkgdir}/usr/local/dooble" "${pkgdir}/opt/${pkgname}"
-    mv -- "${pkgdir}/usr/share/"* "${pkgdir}/opt/${pkgname}"
+    mkdir -p -- "${pkgdir}/opt/${pkgname}"
+    cp Dooble -- "${pkgdir}/opt/${pkgname}/Dooble"
+    cp dooble.sh -- "${pkgdir}/opt/${pkgname}/dooble"
+    for d in Icons Images Plugins Tab Translations; do
+	ln -sf "../../usr/share/dooble/${d}" -- "${pkgdir}/opt/${pkgname}/${d}"
+    done
+    mkdir -p -- "${pkgdir}/opt/${pkgname}/applications"
+    cp dooble.desktop -- "${pkgdir}/opt/${pkgname}/applications/dooble.desktop"
     
     msg "Editing files for the file structure modification"
     sed -i s_"/usr/local/dooble"_"/opt/${pkgname}"_g  \
-	-- "${pkgdir}/opt/${pkgname}/dooble.sh"       \
-	   "${pkgdir}/opt/${pkgname}/applications/dooble.desktop"
-    sed -i /LD_LIBRARY_PATH/d \
-        -- "${pkgdir}/opt/${pkgname}/dooble.sh"
-    sed -i s_'/usr/local/dooble/Lib\x00'_'/usr/lib\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'_g \
+	-- "${pkgdir}/opt/${pkgname}/dooble"
+    sed -i /LD_LIBRARY_PATH/d  \
+	-- "${pkgdir}/opt/${pkgname}/dooble"
+    sed -i s_'/usr/local/dooble/Lib\x00'_'/usr/lib\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'_g  \
 	-- "${pkgdir}/opt/${pkgname}/Dooble" # The replacements's length must match the pattern's length
-    sed -i s_'\.sh$'__g \
+    sed -i s_'/usr/local/dooble/dooble.sh'_"/opt/${pkgname}/dooble"_g  \
 	-- "${pkgdir}/opt/${pkgname}/applications/dooble.desktop"
-    
-    msg "Renaming files"
-    mv -- "${pkgdir}/opt/${pkgname}/dooble.sh" \
-          "${pkgdir}/opt/${pkgname}/dooble"
-    if [ ! "${pkgname}" = "dooble" ]; then
-        mv -- "${pkgdir}/opt/${pkgname}/applications/dooble.desktop" \
-            " ${pkgdir}/opt/${pkgname}/applications/${pkgname}.desktop"
-    fi
-    
-    msg "Remove files an replace with those provided by dooble-common"
-    for d in Icons Images Plugins Tab; do
-	rm -rf -- "${pkgdir}/opt/${pkgname}/${d}"
-	ln -sf "../../usr/share/dooble/${d}" -- "${pkgdir}/opt/${pkgname}/${d}"
-    done
-    rm -r -- "${pkgdir}/opt/${pkgname}/icons"
-    rm -r -- "${pkgdir}/usr/local/include"
-    rmdir -- "${pkgdir}/usr/local/"
-    rmdir -- "${pkgdir}/usr/share/"
-    rmdir -- "${pkgdir}/usr/"
 }
 
