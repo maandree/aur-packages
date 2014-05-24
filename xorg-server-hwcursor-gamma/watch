@@ -1,0 +1,25 @@
+#!/bin/sh
+
+[ -f 'PKGBUILD?h=packages%2Fxorg-server' ] &&  rm 'PKGBUILD?h=packages%2Fxorg-server'
+
+wget 'https://projects.archlinux.org/svntogit/packages.git/plain/trunk/PKGBUILD?h=packages/xorg-server' >/dev/null 2>/dev/null
+
+mv 'PKGBUILD?h=packages%2Fxorg-server' PKGBUILD.upstream.new
+
+if [ $? = 0 ]; then
+	[ -f unfetchable ] && rm unfetchable
+	grep ^pkg < PKGBUILD.upstream.new | md5sum > new-sum
+	touch sum
+	if [ "$(cat sum)" = "$(cat new-sum)" ]; then
+		rm new-sum
+	else
+		mv new-sum sum
+		diff PKGBUILD.upstream.{old,new} > PKGBUILD.upstream.diff
+		mv PKGBUILD.upstream.{new,old}
+		echo 'xorg-server-hwcursor-gamma'
+	fi
+elif [ ! -f unfetchable ]; then
+	touch unfetchable
+	echo 'xorg-server-hwcursor-gamma (unfetchable)'
+fi
+
