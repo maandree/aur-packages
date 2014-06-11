@@ -12,7 +12,7 @@ if [ $? = 0 ]; then
 		rm new-sum
 	else
 		mv new-sum sum
-		echo 'opencascade-pkgbuild' "$(grep ^md5sums= < opencascade-pkgbuild | sed -e s_md5sums=__g -e s_\'__g)"')'
+		echo 'opencascade-docs'
 	fi
 elif [ ! -f unfetchable ]; then
 	touch unfetchable
