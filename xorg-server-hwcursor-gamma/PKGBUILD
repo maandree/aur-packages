@@ -11,7 +11,6 @@ depends=(libepoxy libxdmcp libxfont libpciaccess libdrm pixman libgcrypt libxau 
 provides=('xorg-server=1.16.0' 'X-ABI-VIDEODRV_VERSION=18' 'X-ABI-XINPUT_VERSION=21' 'X-ABI-EXTENSION_VERSION=8.0' 'x-server')
 conflicts=('xorg-server' 'nvidia-utils<=331.20' 'glamor-egl')
 replaces=('glamor-egl')
-install=xorg-server-hwcursor-gamma.install
 arch=('i686' 'x86_64')
 license=('custom')
 url="http://xorg.freedesktop.org"
@@ -82,7 +81,7 @@ build() {
       --enable-config-udev \
       --enable-systemd-logind \
       --enable-suid-wrapper \
-      --disable-install-setuid \
+      --enable-install-setuid \
       --enable-record \
       --disable-xfbdev \
       --disable-xfake \
