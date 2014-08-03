@@ -8,7 +8,7 @@ pkgver=1.16.0
 pkgrel=1
 pkgdesc="Xorg X server with patch to apply gamma ramps on hardware cursors"
 depends=(libepoxy libxdmcp libxfont libpciaccess libdrm pixman libgcrypt libxau xorg-server-common xf86-input-evdev libxshmfence)
-provides=('xorg-server=1.16.0' 'X-ABI-VIDEODRV_VERSION=15' 'X-ABI-XINPUT_VERSION=20' 'X-ABI-EXTENSION_VERSION=8.0' 'x-server')
+provides=('xorg-server=1.16.0' 'X-ABI-VIDEODRV_VERSION=18' 'X-ABI-XINPUT_VERSION=21' 'X-ABI-EXTENSION_VERSION=8.0' 'x-server')
 conflicts=('xorg-server' 'nvidia-utils<=331.20' 'glamor-egl')
 replaces=('glamor-egl')
 install=xorg-server-hwcursor-gamma.install
