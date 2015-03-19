@@ -1,10 +1,10 @@
 #!/bin/sh
 
-[ -f 'overview' ] &&  rm 'overview'
-wget https://bitbucket.org/rivanvx/beamer/overview >/dev/null 2>/dev/null
+[ -f 'downloads' ] &&  rm 'downloads'
+wget https://bitbucket.org/rivanvx/beamer/downloads >/dev/null 2>/dev/null
 if [ $? = 0 ]; then
 	[ -f unfetchable ] && rm unfetchable
-	grep '</span> Tags' < overview | md5sum > new-sum
+	grep '</span> Tags' < downloads | md5sum > new-sum
 	touch sum
 	if [ "$(cat sum)" = "$(cat new-sum)" ]; then
 		rm new-sum
@@ -12,7 +12,7 @@ if [ $? = 0 ]; then
 		mv new-sum sum
 		echo 'latex-beamer'
 	fi
-	rm overview
+	rm downloads
 elif [ ! -f unfetchable ]; then
 	touch unfetchable
 	echo 'latex-beamer (unfetchable)'
