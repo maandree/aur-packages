@@ -1,10 +1,10 @@
 #!/bin/sh
 
 [ -f 'index.html' ] &&  rm 'index.html'
-wget http://dooble.sourceforge.net/ >/dev/null 2>/dev/null
+wget http://dooble.sourceforge.net/ -O index.html >/dev/null 2>/dev/null
 if [ $? = 0 ]; then
 	[ -f unfetchable ] && rm unfetchable
-	grep 'has been released' < index.html | md5sum > new-sum
+	grep 'Dooble [[:digit:]\.]\+' < index.html | md5sum > new-sum
 	touch sum
 	if [ "$(cat sum)" = "$(cat new-sum)" ]; then
 		rm new-sum
