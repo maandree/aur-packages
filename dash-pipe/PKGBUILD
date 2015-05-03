@@ -1,3 +1,5 @@
+# Maintainer: Mattias Andrée <`base64 -d`(bWFhbmRyZWUK)@member.fsf.org>
+
 pkgname=dashpipe
 pkgver=1.0.3
 pkgrel=1
