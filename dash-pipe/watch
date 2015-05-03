@@ -1,0 +1,21 @@
+#!/bin/sh
+
+[ -f release ] && rm release
+
+wget 'https://github.com/DanielOaks/dashpipe/releases' -O release >/dev/null 2>/dev/null
+
+if [ $? = 0 ]; then
+	[ -f unfetchable ] && rm unfetchable
+	grep -Po 'href="[^"]*\.tar\.gz"' < release | md5sum > new-sum
+	touch sum
+	if [ "$(cat sum)" = "$(cat new-sum)" ]; then
+		rm new-sum
+	else
+		mv new-sum sum
+		echo 'dashpipe'
+	fi
+elif [ ! -f unfetchable ]; then
+	touch unfetchable
+	echo 'dashpipe (unfetchable)'
+fi
+
