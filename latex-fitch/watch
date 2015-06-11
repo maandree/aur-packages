@@ -1,12 +1,12 @@
 #!/bin/sh
 
-[ -f fitch.sty ] &&  rm fitch.sty
+[ -f fitch.sty.new ] &&  rm fitch.sty.new
 
-wget 'http://folk.uio.no/johanw/fitch.sty' -O fitch.sty >/dev/null 2>/dev/null
+wget 'http://folk.uio.no/johanw/fitch.sty' -O fitch.sty.new >/dev/null 2>/dev/null
 
 if [ $? = 0 ]; then
 	[ -f unfetchable ] && rm unfetchable
-	md5sum fitch.sty > new-sum
+	md5sum fitch.sty.new > new-sum
 	touch sum
 	if [ "$(cat sum)" = "$(cat new-sum)" ]; then
 		rm new-sum

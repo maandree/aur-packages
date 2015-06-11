@@ -11,7 +11,8 @@ depends=('emacs')
 source=(http://www.webweavertech.com/ovidiu/emacs/find-recursive.txt)
 md5sums=('468fcc4848e4adf54af4fdbe78581b95')
 
-build() {
+package ()
+{
   cd $startdir/src/
   install -Dm644 $startdir/src/find-recursive.txt $startdir/pkg/usr/share/emacs/site-lisp/find-recursive.el
 }

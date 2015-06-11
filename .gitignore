@@ -5,6 +5,7 @@ _/
 \#*\#
 .\#*
 *.swp
+*.swo
 *.bak
 
 *.tgz
@@ -33,6 +34,7 @@ release
 *.elc
 *.txt
 *.sty
+*.log
 *-pkgbuild
 unfetchable
 
@@ -40,3 +42,6 @@ unfetchable
 /texlive-flashcards/flashcards
 *.[0-9]
 tags
+
+.aur/
+
