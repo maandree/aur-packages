@@ -12,10 +12,10 @@ if [ $? = 0 ]; then
 		rm new-sum
 	else
 		mv new-sum sum
-		echo 'emacs-clojure-mode-git'
+		echo 'emacs-clojure-mode'
 	fi
 elif [ ! -f unfetchable ]; then
 	touch unfetchable
-	echo 'emacs-clojure-mode-git (unfetchable)'
+	echo 'emacs-clojure-mode (unfetchable)'
 fi
 
