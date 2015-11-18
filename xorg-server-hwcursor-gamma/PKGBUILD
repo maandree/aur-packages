@@ -5,7 +5,7 @@
 _pkgname=xorg-server
 pkgname=xorg-server-hwcursor-gamma
 pkgver=1.18.0
-pkgrel=2 # 2 in xorg-server
+pkgrel=2 # 3 in xorg-server
 pkgdesc="Xorg X server with patch to apply gamma ramps on hardware cursors"
 depends=(libepoxy libxdmcp libxfont libpciaccess libdrm pixman libgcrypt libxau xorg-server-common libxshmfence libgl xf86-input-evdev)
 provides=("xorg-server=${pkgver}" 'X-ABI-VIDEODRV_VERSION=20' 'X-ABI-XINPUT_VERSION=22.1' 'X-ABI-EXTENSION_VERSION=9.0' 'x-server')
