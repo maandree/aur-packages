@@ -1,0 +1,21 @@
+#!/bin/sh
+
+[ -f 'release' ] && rm 'release'
+
+wget 'http://www.msweet.org/projects.php?Z4' -O release >/dev/null 2>/dev/null
+
+if [ $? = 0 ]; then
+	[ -f unfetchable ] && rm unfetchable
+	< release grep -Poi '>newsd [^<>]* source archive<' | sed 1q | sed 's/ tar.[^ ]* / /g' | dd conv=lcase 2>/dev/null | md5sum > new-sum
+	touch sum
+	if [ "$(cat sum)" = "$(cat new-sum)" ]; then
+		rm new-sum
+	else
+		mv new-sum sum
+		echo 'newsd'
+	fi
+elif [ ! -f unfetchable ]; then
+	touch unfetchable
+	echo 'newsd (unfetchable)'
+fi
+
