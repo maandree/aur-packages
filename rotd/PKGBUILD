@@ -1,7 +1,7 @@
 # Maintainer: Mattias Andrée <`base64 -d`(bWFhbmRyZWUK)@member.fsf.org>
 
 pkgname=rotd
-pkgver=1.1.2
+pkgver=1.2
 pkgrel=1
 pkgdesc="Generate a paper with important or fun information for the day"
 arch=(any)
@@ -14,7 +14,7 @@ optdepends=("curl: for leap second announcements and xkcd comics"
 	    "solar-python: (>=2.5) for solar information")
 makedepends=(make coreutils sed)
 source=($url/archive/$pkgver.tar.gz)
-sha256sums=(e81e78f39abb09c736e23159279cab5ab2455f05da98d599e086a166bba08589)
+sha256sums=(c5213ac54b59c4a6d0544bca4413397d308c4334759c51b8fbc0b4b0a2d83745)
 
 
 build() {
