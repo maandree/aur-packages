@@ -20,6 +20,8 @@ _/
 *.bz2.*
 *.sig.*
 *.asc.*
+*.zst
+*.zstd.*
 sum
 src/
 pkg/
