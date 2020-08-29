@@ -15,7 +15,7 @@ install="$(install="" && . PKGBUILD && echo "${install}")"
 
 if [ ! -d .aur ]; then
     newpkg=1
-    git clone "ssh://aur@aur4.archlinux.org/${pkgname}.git" .aur
+    git clone "ssh://aur@aur.archlinux.org/${pkgname}.git" .aur
 fi
 
 version="${pkgver}"
