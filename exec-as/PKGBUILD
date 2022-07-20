@@ -1,13 +1,13 @@
 # Maintainer: Mattias Andrée <`base64 -d`(bWFhbmRyZWUK)@kth.se>
 pkgname=exec-as
-pkgver=1.2.1
+pkgver=1.2.1.1
 pkgrel=1
 pkgdesc="A command that lets you start another command with any argv[0]"
 arch=(i686 x86_64)
-url="https://github.com/maandree/exec-as"
+url="https://codeberg.org/maandree/exec-as"
 license=('custom:ISC')
 source=("$pkgname-$pkgver.tar.gz::$url/archive/$pkgver.tar.gz")
-sha256sums=(a5d45290929fc32ca448c648a817136cacc4d5a64aa1816e2482d6fe5ccd1e04)
+sha256sums=(508e86d920fb40760024d6069c9e2be00996834b7ba6de474b7bf969e70aa61c)
 
 build() {
   cd "$srcdir/$pkgname-$pkgver"
