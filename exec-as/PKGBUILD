@@ -7,19 +7,19 @@ arch=(i686 x86_64)
 url="https://codeberg.org/maandree/exec-as"
 license=('custom:ISC')
 source=("$pkgname-$pkgver.tar.gz::$url/archive/$pkgver.tar.gz")
-sha256sums=(508e86d920fb40760024d6069c9e2be00996834b7ba6de474b7bf969e70aa61c)
+sha256sums=(7f216d13435ec37e984a8afc0494a3186c5543bf02e3cdbf6d28201528505b69)
 
 build() {
-  cd "$srcdir/$pkgname-$pkgver"
+  cd "$srcdir/$pkgname"
   make PREFIX=/usr
 }
 
 check() {
-  cd "$srcdir/$pkgname-$pkgver"
+  cd "$srcdir/$pkgname"
   make check
 }
 
 package() {
-  cd "$srcdir/$pkgname-$pkgver"
+  cd "$srcdir/$pkgname"
   make PREFIX=/usr DESTDIR="$pkgdir" install
 }
