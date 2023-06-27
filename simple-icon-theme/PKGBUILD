@@ -1,23 +1,23 @@
 # Maintainer: Mattias Andrée <`base64 -d`(bWFhbmRyZWUK)@kth.se>
 
 pkgname=simple-icon-theme
-pkgver=9
+pkgver=10
 pkgrel=1
 pkgdesc='A very simple icon theme'
-url='https://github.com/maandree/simple-icon-theme'
+url='https://codeberg.org/maandree/simple-icon-theme'
 arch=(any)
 license=('custom:ISC')
 depends=(gtk-update-icon-cache)
 makedepends=(librsvg)
 source=($pkgname-$pkgver.tar.gz::$url/archive/$pkgver.tar.gz)
-sha512sums=(9b407c40fb388b076beeb76aeb67874fc26df4bfd04bfc644d0ce027cc430fed1e360717c6b9bad7193642b479993bab856aabb375fba1f58a5bbac2c0e69130)
+sha512sums=(6cf4163261d378c46ab4c7f728ce7fd56d83465d5e8e9831f86792333fb2907316883a7535200ce66b07faaaeea10bc2433aa90d6f6f9f7449539c8f8ea65c30)
 
 build () {
-	cd "$srcdir/simple-icon-theme-$pkgver"
+	cd "$srcdir/simple-icon-theme"
 	make -j all-fast PREFIX=/usr
 }
 
 package () {
-	cd "$srcdir/simple-icon-theme-$pkgver"
+	cd "$srcdir/simple-icon-theme"
 	make install PREFIX=/usr DESTDIR="$pkgdir"
 }
