@@ -4,7 +4,9 @@ set -e
 
 cd "$(dirname "${0}")"
 
-makepkg --install --clean
+if test ! "${SKIP_BUILD}" = y; then
+	makepkg --install --clean
+fi
 
 newpkg=0
 pkgname="$(. PKGBUILD && echo "${pkgname}")"
