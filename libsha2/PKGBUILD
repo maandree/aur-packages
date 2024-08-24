@@ -1,29 +1,29 @@
 # Maintainer: Mattias Andrée <`base64 -d`(bWFhbmRyZWUK)@kth.se>
 
 pkgname=libsha2
-pkgver=1.1
+pkgver=1.1.1
 pkgrel=1
 pkgdesc="SHA-2-family hashing library"
 arch=(i686 x86_64)
-url="https://github.com/maandree/libsha2"
+url="https://codeberg.org/maandree/libsha2"
 license=('custom:ISC')
 depends=()
 checkdepends=()
 makedepends=()
 source=(libsha2-$pkgver.tar.gz::$url/archive/$pkgver.tar.gz)
-sha256sums=(88973c1815c5531d61c399eeefcc8f056e8ad9be0328967a75c188c7c8770c12)
+sha256sums=(66f5b5335f298d8bc5493d467264e02cd523b2325cf15066fcc3280f37f53340)
 
 build() {
-  cd "$srcdir/$pkgname-$pkgver"
+  cd "$srcdir/$pkgname"
   make PREFIX=/usr
 }
 
 check() {
-  cd "$srcdir/$pkgname-$pkgver"
+  cd "$srcdir/$pkgname"
   make check
 }
 
 package() {
-  cd "$srcdir/$pkgname-$pkgver"
+  cd "$srcdir/$pkgname"
   make PREFIX=/usr DESTDIR="$pkgdir" install
 }
